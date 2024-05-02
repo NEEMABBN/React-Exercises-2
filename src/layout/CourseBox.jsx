@@ -4,14 +4,17 @@ import CourseList from "./CourseList";
 export default function CourseBox() {
   const [stringArray, setStringArray] = useState([
     {
+      id: 1,
       title: "React :",
       description: "this is React section",
     },
     {
+      id: 2,
       title: "Vue :",
       description: "this is Vue section",
     },
     {
+      id: 3,
       title: "Angular :",
       description: "this is Angular section",
     },
@@ -22,10 +25,12 @@ export default function CourseBox() {
       return [
         ...PrevArray,
         {
+          id: 4,
           title: "Laravel :",
           description: "this is Laravel section",
         },
         {
+          id: 5,
           title: "Swift :",
           description: "this is Swift section",
         },
@@ -37,7 +42,9 @@ export default function CourseBox() {
     <div>
       {/* stringArray = stringArray.map((item) => <CourseList>{item}</CourseList>); */}
       {stringArray.map((item) => (
-        <CourseList course={item} />
+        <CourseList 
+        key={item.id}
+        course={item} />
       ))}
       <button onClick={loadMoreHandler}>Load More</button>
     </div>
