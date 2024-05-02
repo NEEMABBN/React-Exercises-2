@@ -20,33 +20,42 @@ export default function CourseBox() {
     },
   ]);
 
+  const [loading, setLoading] = useState(false);
+
   const loadMoreHandler = () => {
-    setStringArray((PrevArray) => {
-      return [
-        ...PrevArray,
-        {
-          id: 4,
-          title: "Laravel :",
-          description: "this is Laravel section",
-        },
-        {
-          id: 5,
-          title: "Swift :",
-          description: "this is Swift section",
-        },
-      ];
-    });
+    setLoading(true);
+    setTimeout(() => {
+      setStringArray((PrevArray) => {
+        return [
+          ...PrevArray,
+          {
+            id: 4,
+            title: "Laravel :",
+            description: "this is Laravel section",
+          },
+          {
+            id: 5,
+            title: "Swift :",
+            description: "this is Swift section",
+          },
+        ];
+      });
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <div>
       {/* stringArray = stringArray.map((item) => <CourseList>{item}</CourseList>); */}
       {stringArray.map((item) => (
-        <CourseList 
-        key={item.id}
-        course={item} />
+        <CourseList key={item.id} course={item} />
       ))}
-      <button onClick={loadMoreHandler}>Load More</button>
+
+      {loading ? (
+        <span>Loading ...</span>
+      ) : (
+        <button onClick={loadMoreHandler}>Load More</button>
+      )}
     </div>
   );
 }
